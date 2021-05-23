@@ -15,9 +15,9 @@ idx,autoname,type,name
 13,11_Would_you_like_to,unuseful,
 14,12_5a4_Take_a_photo_,picture,5a4_ALPhA_Photo
 15,13_Would_you_like_to,unuseful,
-16,14_5a5_Take_a_photo_,picture,5a4_ALPhA_Photo
+16,14_5a5_Take_a_photo_,picture,5a5_ALPhA_Photo
 17,15_Would_you_like_to,unuseful,
-18,16_5a5_Take_a_photo_,picture,5a5_ALPhA_Photo
+18,16_5a5_Take_a_photo_,picture,5a6_ALPhA_Photo
 19,18_5b1_Please_use_as,audio,5b1_ALPhA_Location_Description
 20,19_5b2_Anything_else,open,5b2_ALPhA_Location_Description
 21,20_6_Which_type_of_p,fixed,6_Public_Space_Type
