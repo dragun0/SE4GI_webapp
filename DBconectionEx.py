@@ -39,7 +39,7 @@ def Update_LAGOS_DB():
     last_upload = [whole_df['ID_EPC5'][0],whole_df['uploaded_at'][0]]
     
     # establishing pre-established categories of the columns
-    col_df = pd.read_csv(r'C:\Users\daene\Dropbox\POLIMI\Semestre 1\Software Engineering for Geoinformatics\Project\col_description.txt')
+    col_df = pd.read_csv(r'C:\Users\daene\Dropbox\POLIMI\Semestre 1\Software Engineering for Geoinformatics\Project\SE4GI_webapp\col_description.txt')
     # removing unuseful columns as defined in column dataframe col_df
     unuseful = list(col_df.loc[col_df['type'].isin(['unuseful'])].autoname)
     whole_df = whole_df.drop(unuseful, axis = 1)
@@ -72,23 +72,22 @@ def Update_LAGOS_DB():
     # from Pandas DataFrame to GeoPandas GeoDataFrame
     data_geodf = gpd.GeoDataFrame(data_df, geometry=gpd.points_from_xy(data_df['Longitude'], data_df['Latitude']))
     
-    
+    # ------------------------- EXPORTING DATA TO DBMS -----------------------
     # setup db connection (generic connection path to be update with your credentials: 
     # 'postgresql://user:password@localhost:5432/mydatabase')
     engine = create_engine('postgresql://postgres:kotxino35@localhost:5433/SE4GI')
     # data_df.to_sql('Lagos ALPhA Survey', engine, if_exists = 'replace', index=False)
     data_geodf.to_postgis('Lagos ALPhA Survey', engine, if_exists = 'replace', index=False)
-    
     print('Lagos ALPhA Survey Updated to server. Last upload entry:', last_upload)
+    # a back-up database is stored in a csv file
+    data_df.to_csv(r'C:\Users\daene\Dropbox\POLIMI\Semestre 1\Software Engineering for Geoinformatics\Project\SE4GI_webapp\LAGOS_DB.txt')
     return
 
 def Load_gdf_LAGOS_DB():
-    # ---------------------- REQUEST DATA IN SERVER SE4GI -----------------------
+    # ---------------------- REQUEST DATA FROM SERVER SE4GI -----------------------
     engine = create_engine('postgresql://postgres:kotxino35@localhost:5433/SE4GI')
     # read the dataframe from a postgreSQL table
     # data_df = pd.read_sql_table('Lagos ALPhA Survey', engine)
     data_geodf = gpd.read_postgis('Lagos ALPhA Survey', engine, geom_col='geometry')
     return data_geodf
 
-#data_df = Load_gdf_LAGOS_DB()
-data_geodf = Load_gdf_LAGOS_DB()
