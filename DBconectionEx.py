@@ -14,7 +14,9 @@ import numpy as np
 from scipy import stats
 from sqlalchemy import create_engine
 
-# Function 'update LAGOS DB' will be implemented
+# Function 'Update_LAGOS_DB' loads the raw data from the Epicollect 5 API 
+# corresponding project, organizes, process it and cleans it to send it to the
+# local server database management system postgreSQL
 
 def Update_LAGOS_DB():
     # ------------------------- REQUEST FOR EPICOLLECT5 DATA -----------------------
@@ -69,10 +71,24 @@ def Update_LAGOS_DB():
     
     # from Pandas DataFrame to GeoPandas GeoDataFrame
     data_geodf = gpd.GeoDataFrame(data_df, geometry=gpd.points_from_xy(data_df['Longitude'], data_df['Latitude']))
-    # data_geodf.plot()
     
-    # setup db connection (generic connection path to be update with your credentials: 'postgresql://user:password@localhost:5432/mydatabase')
+    
+    # setup db connection (generic connection path to be update with your credentials: 
+    # 'postgresql://user:password@localhost:5432/mydatabase')
     engine = create_engine('postgresql://postgres:kotxino35@localhost:5433/SE4GI')
+    # data_df.to_sql('Lagos ALPhA Survey', engine, if_exists = 'replace', index=False)
     data_geodf.to_postgis('Lagos ALPhA Survey', engine, if_exists = 'replace', index=False)
-    print('Lagos ALPhA Survey Last upload entry:', last_upload)
+    
+    print('Lagos ALPhA Survey Updated to server. Last upload entry:', last_upload)
     return
+
+def Load_gdf_LAGOS_DB():
+    # ---------------------- REQUEST DATA IN SERVER SE4GI -----------------------
+    engine = create_engine('postgresql://postgres:kotxino35@localhost:5433/SE4GI')
+    # read the dataframe from a postgreSQL table
+    # data_df = pd.read_sql_table('Lagos ALPhA Survey', engine)
+    data_geodf = gpd.read_postgis('Lagos ALPhA Survey', engine, geom_col='geometry')
+    return data_geodf
+
+#data_df = Load_gdf_LAGOS_DB()
+data_geodf = Load_gdf_LAGOS_DB()
