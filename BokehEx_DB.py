@@ -36,16 +36,16 @@ TOOLTIPS = [
 ]
 
 # range bounds supplied in web mercator coordinates epsg=3857
-p1 = figure(x_range=(355490, 455470), y_range=(714990, 743910),
+p1 = figure(x_range=(355490, 405470), y_range=(714990, 743910),
            x_axis_type="mercator", y_axis_type="mercator", tooltips=TOOLTIPS)
 
 #Add basemap tile
 p1.add_tile(get_provider(CARTODBPOSITRON))
 #Add Glyphs
-p1.circle('x', 'y', source=psource, color='red', radius=10) #size=10
+p1.circle('x', 'y', source=psource, color='purple', radius=20) #size=10
 #Add Labels and add to the plot layout
 labels = LabelSet(x='x', y='y', text='ID', level="glyph",
-              x_offset=5, y_offset=5, source=psource, render_mode='css')
+              x_offset=8, y_offset=8, source=psource, render_mode='css')
 
 p1.add_layout(labels)
 output_file(r"C:\Users\daene\Dropbox\POLIMI\Semestre 1\Software Engineering for Geoinformatics\Project\Lagos_map.html")
