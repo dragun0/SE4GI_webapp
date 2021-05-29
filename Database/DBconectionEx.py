@@ -39,7 +39,7 @@ def Update_LAGOS_DB():
     last_upload = [whole_df['ID_EPC5'][0],whole_df['uploaded_at'][0]]
     
     # establishing pre-established categories of the columns
-    col_df = pd.read_csv(r'C:\Users\daene\Dropbox\POLIMI\Semestre 1\Software Engineering for Geoinformatics\Project\SE4GI_webapp\col_description.txt')
+    col_df = pd.read_csv(r'C:\Users\daene\Dropbox\POLIMI\Semestre 1\Software Engineering for Geoinformatics\Project\SE4GI_webapp\Database\col_description.txt')
     # removing unuseful columns as defined in column dataframe col_df
     unuseful = list(col_df.loc[col_df['type'].isin(['unuseful'])].autoname)
     whole_df = whole_df.drop(unuseful, axis = 1)
