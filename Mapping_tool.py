@@ -17,7 +17,7 @@ from bokeh.tile_providers import *
 from bokeh.palettes import *
 from bokeh.transform import *
 from bokeh.layouts import *
-from bokeh.resources import CDN
+from bokeh.models.widgets import *
 from bokeh.embed import components
 
 
@@ -42,12 +42,11 @@ def getPointCoords(rows, geom, coord_type):
 app = Flask(__name__)
 
 
-def make_plot():
+def make_plot(FilteredExercise):
     lagos_gdf = Load_Lagos_gdf().to_crs(epsg=3857) 
     lagos_gdf['x'] = lagos_gdf.apply(getPointCoords, geom='geometry', coord_type='x', axis=1)
     lagos_gdf['y'] = lagos_gdf.apply(getPointCoords, geom='geometry', coord_type='y', axis=1)
     lagos_df = lagos_gdf.drop('geometry', axis=1).copy()
-    pointSource = ColumnDataSource(lagos_df)
     
     #sets the zoom scale for the map
     scale = 400
@@ -60,35 +59,52 @@ def make_plot():
     y_min=int(y.mean() - (scale * 350))
     y_max=int(y.mean() + (scale * 350))
 
-    plot = figure(title='ALPhA test',
+    pointSource = ColumnDataSource(lagos_df)
+    
+
+    booleans = [True if FilteredExercise in ExerciseTypes else False for ExerciseTypes in pointSource.data['7_Nature_Excercise_Perfomed_Oserved']]
+    myBooleanFilter = BooleanFilter(booleans)
+    
+    view = CDSView(source = pointSource,
+                   filters = [myBooleanFilter]
+                   )
+    
+   
+    plot = figure(
                   match_aspect=True,
                   tools='wheel_zoom,pan,reset,save',
                   x_range=(x_min, x_max),
                   y_range=(y_min, y_max),
                   x_axis_type='mercator',
                   y_axis_type='mercator',
-                  width=500
+                  width=500,
+                  height=500
                   )
+    
     plot.grid.visible=False
     plot.xaxis.visible = False
     plot.yaxis.visible=False
-    plot.title.text_font_size="20px"
-    plot.circle('x','y', source=pointSource, color = 'blue', size = 10)
-    point_hover = HoverTool(tooltips=[('ID', '@ID')], mode='mouse', point_policy='follow_mouse')
+    plot.circle('x','y', source=pointSource, view=view, color = 'red', size = 10)
+    point_hover = HoverTool(tooltips=[('exercise', '@7_Nature_Excercise_Perfomed_Oserved')], mode='mouse', point_policy='follow_mouse')
     plot.tools.append(point_hover)
+    output_file("night_sky")
+    curdoc().theme = 'night_sky'
+    
+    
     
     tile_provider=get_provider(OSM)
     map=plot.add_tile(tile_provider)
     map.level='underlay'
+    
+    
     return plot
-
 
 
 
 
 @app.route('/map')
 def plot(): 
-    p = make_plot()
+    p = make_plot("")
     script, div = components(p)
     return render_template('maps.html', title = 'haaalo', script = script, div = div)
   
