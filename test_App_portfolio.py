@@ -5,7 +5,6 @@ from werkzeug.exceptions import abort
 
 from psycopg2 import connect
 
-
 app = Flask(__name__,template_folder='templates')
 app.secret_key = '!@3QWeASdZXc'
 
@@ -14,7 +13,9 @@ app.secret_key = '!@3QWeASdZXc'
 
 def conn_db():
     if 'db' not in g:
-        g.db =  connect(dbname="SE4GI", user="postgres", password="kotxino35", port="5433")
+        DBfile = open('Database/dbConfig.txt')
+        connection = DBfile.readline()
+        g.db =  connect(connection)
     return g.db
 
 def enddb_conn():
@@ -40,7 +41,7 @@ def home():
 @app.route("/portfolio")
 def portfolio():
     
-    alpha = get_alpha('69')
+    alpha = get_alpha('33')
     
     mysession()
     return render_template('portfolio.html', alphas=alpha)

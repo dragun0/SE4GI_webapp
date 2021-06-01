@@ -58,12 +58,21 @@ table, th, td {border: 1px solid black; margin-left:auto;margin-right:auto;}
             </audio>
         {% endif %}
             <p>6. Which type of public space does the photo or description represent? : <span style="color:green">{{ alpha[16] }}</span></p>
-        {% for i in range(3) %}
-            {% if alpha[17+i] != none %}
-            <p>{{ alpha[17+i] }}</p>
-            {% endif %}
-        {% endfor %}
+        {% if alpha[17] != none %}
+            <p>{{ alpha[17] }}</p>
+        {% endif %}
+        {% if alpha[18] != none %}
+            <audio controls>
+              <source src="{{ alpha[46] }}" type="audio/wav">
+              Your browser does not support the audio element.
+            </audio>
+        {% endif %}
+        {% if alpha[19] != none %}
+            <p>{{ alpha[19] }}</p>
+        {% endif %}
+        {% if alpha[20] != none %}
             <p>7. What is the nature of exercise you usually perform or observe in this space? (tick all that apply)  : <span style="color:green">{{ alpha[20] }}</span></p>
+        {% endif %}
         {% if alpha[21] != none %}
             <p>{{ alpha[21] }}</p>
         {% endif %}

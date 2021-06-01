@@ -2,12 +2,13 @@
 """
 Created on Tue May 4 20:17:14 2021
 
-@author: daene
+@author: Daniel Aguirre
 """
 
 # import packages
 import requests
 import json
+import os
 import pandas as pd
 import geopandas as gpd
 import numpy as np
@@ -40,7 +41,7 @@ def Update_LAGOS_DB():
     last_upload = [whole_df['ID_EPC5'][0],whole_df['uploaded_at'][0]]
     
     # establishing pre-established categories of the columns
-    col_df = pd.read_csv('Database/col_description.txt')
+    col_df = pd.read_csv(os.path.abspath('./Database/col_description.txt'))
     # removing unuseful columns as defined in column dataframe col_df
     unuseful = list(col_df.loc[col_df['type'].isin(['unuseful'])].autoname)
     whole_df = whole_df.drop(unuseful, axis = 1)
@@ -94,8 +95,7 @@ def Load_gdf_LAGOS_DB():
     DBfile = open('Database/dbConfig.txt')
     connection = DBfile.readline()
     engine = create_engine(connection)
-    # read the dataframe from a postgreSQL table
-    # data_df = pd.read_sql_table('Lagos ALPhA Survey', engine)
+    # read the geodataframe from a postgreSQL table
     data_geodf = gpd.read_postgis('Lagos_ALPhA_Survey', engine, geom_col='geometry')
     return data_geodf
 
@@ -124,7 +124,7 @@ def Update_YAOUNDE_DB():
     last_upload = [whole_df['ID_EPC5'][0],whole_df['uploaded_at'][0]]
     
     # establishing pre-established categories of the columns
-    col_df = pd.read_csv('Database/col_descriptionY.txt')
+    col_df = pd.read_csv(os.path.abspath('Database/col_descriptionY.txt'))
     # removing unuseful columns as defined in column dataframe col_df
     unuseful = list(col_df.loc[col_df['type'].isin(['unuseful'])].autoname)
     whole_df = whole_df.drop(unuseful, axis = 1)
@@ -160,7 +160,7 @@ def Update_YAOUNDE_DB():
     
     # ------------------------- EXPORTING DATA TO DBMS -----------------------
     # setup db connection (generic connection path to be update with your credentials: 
-    DBfile = open('dbConfig.txt')
+    DBfile = open('Database/dbConfig.txt')
     connection = DBfile.readline()
     engine = create_engine(connection)
     # data_df.to_sql('Lagos ALPhA Survey', engine, if_exists = 'replace', index=False)
@@ -176,7 +176,6 @@ def Load_gdf_YAOUNDE_DB():
     DBfile = open('Database/dbConfig.txt')
     connection = DBfile.readline()
     engine = create_engine(connection)
-    # read the dataframe from a postgreSQL table
-    # data_df = pd.read_sql_table('Yaounde ALPhA Survey', engine)
+    # read the geodataframe from a postgreSQL table
     data_geodf = gpd.read_postgis('Yaounde_ALPhA_Survey', engine, geom_col='geometry')
     return data_geodf
