@@ -5,7 +5,7 @@ Created on Tue May 4 20:17:14 2021
 @author: Daniel Aguirre
 """
 
-# import packages
+
 import requests
 import json
 import os

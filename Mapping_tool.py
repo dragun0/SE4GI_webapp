@@ -26,8 +26,10 @@ from test_App_portfolio import get_alpha, conn_db, enddb_conn
 
 
 def Load_Lagos_gdf():
-   engine = create_engine('postgresql://postgres:user@localhost:5432/SE4GI')
-   data_geodf = gpd.read_postgis('Lagos ALPhA Survey', engine, geom_col='geometry')
+   DBfile = open('Database/dbConfig.txt')
+   connection = DBfile.readline()
+   engine = create_engine(connection)
+   data_geodf = gpd.read_postgis('Lagos_ALPhA_Survey', engine, geom_col='geometry')
    return data_geodf
 
 
@@ -275,5 +277,5 @@ def portfolio():
 
 
 if __name__ == '__main__':
-   app.run(debug=True)
+   app.run(debug=True,use_reloader=False)
    
