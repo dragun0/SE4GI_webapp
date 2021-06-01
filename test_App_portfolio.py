@@ -41,7 +41,7 @@ def home():
 @app.route("/portfolio")
 def portfolio():
     
-    alpha = get_alpha('69')
+    alpha = get_alpha('33')
     
     mysession()
     return render_template('portfolio.html', alphas=alpha)
