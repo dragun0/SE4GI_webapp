@@ -179,3 +179,6 @@ def Load_gdf_YAOUNDE_DB():
     # read the geodataframe from a postgreSQL table
     data_geodf = gpd.read_postgis('Yaounde_ALPhA_Survey', engine, geom_col='geometry')
     return data_geodf
+
+
+Update_LAGOS_DB()
