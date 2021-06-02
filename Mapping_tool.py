@@ -24,7 +24,6 @@ from test_App_portfolio import get_alpha, conn_db, enddb_conn
 
 
 
-
 def Load_Lagos_gdf():
    DBfile = open('Database/dbConfig.txt')
    connection = DBfile.readline()
@@ -203,10 +202,10 @@ def createCovidLockdownCallbackCode():
                     source.change.emit();
            
             """ 
-            
+
 
 def make_plot():
-    lagos_gdf = Load_Lagos_gdf().to_crs(epsg=3857) 
+    lagos_gdf = Load_Lagos_gdf().to_crs(epsg=3857)
     lagos_gdf['x'] = lagos_gdf.apply(getPointCoords, geom='geometry', coord_type='x', axis=1)
     lagos_gdf['y'] = lagos_gdf.apply(getPointCoords, geom='geometry', coord_type='y', axis=1)
     
@@ -322,12 +321,12 @@ def make_plot():
     plot.xaxis.visible = False
     plot.yaxis.visible=False
     plot.circle_cross('x','y', source=pointSource, view=view, fill_color = 'blue', size = 10) 
-    point_hover = HoverTool(tooltips=[('health','@13a_Option_Risk_Injury_Disease')], mode='mouse', point_policy='follow_mouse')
+    point_hover = HoverTool(tooltips=[('id','@ID')], mode='mouse', point_policy='follow_mouse')
     plot.tools.append(point_hover)
 
-    taptool = plot.select(type=TapTool)
-    taptool.callback = OpenURL(url= 'http://localhost:5000/Portfolio')
-    
+    Taptool = plot.select(type=TapTool)
+    Taptool.callback = OpenURL(url='/Portfolio?id=@ID')
+
     output_file("night_sky")
     curdoc().theme = 'night_sky'
     
@@ -361,12 +360,13 @@ def plot():
 @app.route("/Portfolio")
 def portfolio():
     
-    alpha = get_alpha('69')
-    
+    selectedID = request.args.get('id')
+    alpha = get_alpha(selectedID)
+      
     return render_template('portfolio.html', alphas=alpha)
 
 
 
 if __name__ == '__main__':
-   app.run(debug=True,use_reloader=False)
+   app.run(debug=True,use_reloader=True)
    
