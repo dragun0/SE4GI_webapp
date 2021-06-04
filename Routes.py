@@ -19,11 +19,10 @@ app = Flask(__name__)
 @app.route('/map')
 def plot(): 
     
-    p = make_plot()
+    make_plot()
     return render_template('Map_home.html')
     
-  
-       
+
    
 @app.route("/Portfolio")
 def portfolio():
