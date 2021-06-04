@@ -284,7 +284,7 @@ def make_plot():
     #connect the widget with the callback
     
     exerciseTypeSelectorWidget.js_on_change("value", ExerciseTypecallback)
-    ExerciseExplanation1 = Div(text="""Click the box below to chose your sport!:)""", width=200, height=100)
+    ExerciseExplanation1 = Div(text="""Click the box below to chose your sport!""", width=200, height=100)
     ExerciseExplanation2 = Div(text="""'Others' may include: Boxing, Weightlifting, Calisthenics, etc.""", width=200, height=100)
     
     #create Safety risk button
@@ -328,8 +328,35 @@ def make_plot():
     plot.grid.visible=False
     plot.xaxis.visible = False
     plot.yaxis.visible=False
-    plot.circle_cross('x','y', source=pointSource, view=view, fill_color = 'blue', size = 10) 
-    point_hover = HoverTool(tooltips=[('id','@ID')], mode='mouse', point_policy='follow_mouse')
+    plot.circle_cross('x','y', source=pointSource, view=view, fill_color = 'blue', size = 10)
+    
+   # point_hover = HoverTool(tooltips=[('id','@5a2_ALPhA_Photo')], mode='mouse', point_policy='follow_mouse')
+    
+   #location displayed in cartesian coordinates
+    point_hover = HoverTool(
+        tooltips="""
+        <div>
+            <div>
+                <img
+                    src="@5a2_ALPhA_Photo" height="82" alt="@5a2_ALPhA_Photo" width="82"
+                    style="float: left; margin: 0px 15px 15px 0px;"
+                    border="2"
+                ></img>
+            </div>
+            <div>
+                <span style="font-size: 17px; font-weight: bold;">@18b_ALPhA_Name</span>
+               
+            </div>
+            <div>
+                <span style="font-size: 15px;">Location</span>
+                <span style="font-size: 10px; color: #696;">($x, $y)</span>
+            </div>
+        </div>
+        """
+    )
+    
+    # <span style="font-size: 15px; color: #966;">[$index]</span>
+    
     plot.tools.append(point_hover)
 
     Taptool = plot.select(type=TapTool)
