@@ -4,7 +4,8 @@ Created on Sun May 30 19:28:19 2021
 
 @author: leoni
 """
-from flask import (Flask, render_template, request)
+
+from flask import (Flask, render_template, request, flash, redirect, abort, session, url_for)
 import pandas as pd
 import geopandas as gpd
 import numpy as np
@@ -12,14 +13,17 @@ from sqlalchemy import create_engine
 from bokeh.models import *
 from bokeh.plotting import * 
 from bokeh.io import *
-from bokeh.tile_providers import *
 from bokeh.palettes import *
 from bokeh.transform import *
 from bokeh.layouts import *
 from bokeh.models.widgets import *
 from bokeh.embed import *
 from bokeh.resources import CDN
-from test_App_portfolio import get_alpha, conn_db, enddb_conn
+from bokeh.embed import server_document
+import subprocess
+from bokeh.tile_providers import get_provider, OSM
+#from jinja2.environment import Template
+import jinja2
 
 
 
@@ -204,7 +208,11 @@ def createCovidLockdownCallbackCode():
             """ 
 
 
+
+
 def make_plot():
+    
+    
     lagos_gdf = Load_Lagos_gdf().to_crs(epsg=3857)
     lagos_gdf['x'] = lagos_gdf.apply(getPointCoords, geom='geometry', coord_type='x', axis=1)
     lagos_gdf['y'] = lagos_gdf.apply(getPointCoords, geom='geometry', coord_type='y', axis=1)
@@ -327,46 +335,27 @@ def make_plot():
     Taptool = plot.select(type=TapTool)
     Taptool.callback = OpenURL(url='/Portfolio?id=@ID')
 
-    output_file("night_sky")
-    curdoc().theme = 'night_sky'
+ 
+    plot.add_tile(get_provider(OSM))
+#    map.level='underlay'
     
-    tile_provider=get_provider(OSM)
-    map=plot.add_tile(tile_provider)
-    map.level='underlay'
     
     maplayout = row(widgetbox(ExerciseExplanation1, exerciseTypeSelectorWidget, ExerciseExplanation2, SafetyButtons, HealthButtons, OrganisationButtons, CovidLockdownButtons), plot)
+ 
+    output_file("./templates/map.html")
+    
+#    curdoc().add_root(maplayout)
+#   curdoc().theme = 'night_sky'
+    save(maplayout)
+    
     #mapWithFilteringTool = column(widgetbox(exerciseTypeSelectorWidget), plot)
     #curdoc().add_root(row(maplayout, plot, width=800))
   
     
-    
-    return maplayout
+    return 'mapping'
 
 
 
-app = Flask(__name__)
-
-
-@app.route('/map')
-def plot(): 
-    p = make_plot()
-    return file_html(p, CDN)
-   # script, div = components(widget)
- #   return render_template('maps.html', title = 'haaalo', script = script, div = div)
-  
-    
-   
-   
-@app.route("/Portfolio")
-def portfolio():
-    
-    selectedID = request.args.get('id')
-    alpha = get_alpha(selectedID)
-      
-    return render_template('portfolio.html', alphas=alpha)
 
 
 
-if __name__ == '__main__':
-   app.run(debug=True,use_reloader=True)
-   
