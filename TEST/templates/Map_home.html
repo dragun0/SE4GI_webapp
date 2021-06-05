@@ -3,7 +3,7 @@
   <head>
 
              <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes" />
-           <link rel="stylesheet" href="{{ url_for('static', filename='start.css') }}">
+           <link rel="stylesheet" href="{{ url_for('static', filename='startforMap.css') }}">
           
   </head>
   <body>
@@ -31,7 +31,7 @@
                                         <li><a href="/logout">Logout</a></li>
                                         
                                         {% else %}
-                                        <li><a href="/login">Log in</a></li>
+                                        <li><a href="/login">Sign in</a></li>
                                         <li><a href="/register">Sign up</a></li>
                                          <li><a href="/show_comment">Blog</a></li>
                                         <li><a href="/comment">Leave a comment</a></li>
@@ -52,13 +52,13 @@
 !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src='https://weatherwidget.io/js/widget.min.js';fjs.parentNode.insertBefore(js,fjs);}}(document,'script','weatherwidget-io-js');
 </script>
 </div>
-              <div>
+              <section>
 
 
                 <hr>
                 {% include 'map.html' %}
                 <hr>
-       </div>
+       </section>
     
   </body>
   
