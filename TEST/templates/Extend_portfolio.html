@@ -1,0 +1,391 @@
+{% extends 'portfolio.html'%}
+
+
+{% block header %}
+<div id="header-wrapper" class="margin">
+    <div class="container">
+
+        <!-- Header -->
+            <header id="header">
+                <div class="inner">
+
+                    <!-- Logo -->
+                        <h1><a href="/About"  id="logo">ALPHA SPACE</a></h1>
+
+                    <!-- Nav -->
+                        <nav id="nav">
+                            
+                            <ul>
+                                {% if g.user %}
+                                <li><a href="/logout">logout</a></li>
+                                <li><a href="/comment">Add comment</a></li>
+                                <li><a href="/show_comment">show comment</a></li>
+                                <li><a href="/portfolio">portfolio</a></li>
+                                <li><a href="/home">map</a></li>
+                                <li><a href="/contact">contact</a></li>
+                                
+                                
+                                {% else %}
+                                <li><a href="/login">Sign in</a></li>
+                                <li><a href="/register">sign up</a></li>
+                                <li><a href="/comment">Add comment</a></li>
+                                <li><a href="/show_comment">show comment</a></li>
+                                <li><a href="/portfolio">portfolio</a></li>
+                                <li><a href="/home">map</a></li>
+                                <li><a href="/contact">contact</a></li>	
+                                
+                                {% endif %}
+                            
+                            </ul>
+                        </nav>
+
+                </div>
+            </header>
+
+        <!--content-->
+    </div>
+</div>
+{% if g.user %}
+<h3 style="color: red;">logged in as {{ g.user[1] }}!</h3>
+{% endif %}
+</div>
+{% endblock %}
+
+
+
+{% block content %}
+
+  {% for alpha in alphas %}
+    <article>
+        <header class="major map" style="text-justify: auto;" style="text-align: center;">
+          
+          <h4><strong>Alpha "ID" : </strong> </h4>
+          <p style="color: blue;">({{ alpha[1] }})</p> 
+          {% if alpha[64] %}
+          <h4><strong>Named: </strong></h4>
+          <p style="color: blue;">{{ alpha[64] }}</p>
+          {% endif %}
+          <h4 ><strong>Submitted by: </strong> </h4>
+          <p style="color: blue;">
+            {{ alpha[6] }} year old ,{{ alpha[7] }} ,on {{ alpha[4] }} at {{ alpha[5] }}
+          </p>
+        </header>
+        
+    <header class="major map" style="text-justify: auto;" style="text-align: center;">
+      <table>
+          <tr>    
+        {% for i in range(5) %}
+            {% if alpha[9+i] %}
+            <td><IMG SRC="{{ alpha[9+i] }}" width="360" height="500"></td>
+            {% endif %}
+        {% endfor %}
+            </tr>
+      </table>
+        <div>
+           <h4>
+               Recorded Location :
+           </h4> 
+            <p style="color:blue">
+                Longitude {{ alpha[65] }}°, Latitude {{ alpha[66] }}° with {{ alpha[67] }} m Accuracy
+           </p>
+        
+        </div>
+          </div>
+    </header>
+    <header class="major map" style="text-justify: auto;" style="text-align: center;">
+        <table id="port">
+            <tr>
+                <th style="text-align: center;">Question</th>
+                <th style="text-align: center;">Answer</th>
+            </tr>
+            {% if alpha[14] != none %}
+            <tr>
+                <td>Describe Location</td>
+                <td style="color: blue;">{{ alpha[14] }}</td>
+               
+            </tr>
+            {% endif %}
+            {% if alpha[15] != none %}
+            <tr> 
+                <td>Audio Discription</td>
+                <td><audio controls>
+                    <source src="{{ alpha[15] }}" type="audio/wav">
+                    Your browser does not support the audio element.
+                  </audio>
+                </td>
+            </tr>
+            {% endif %}
+            <tr>
+                <td> Which type of public space does the photo or description represent?</td>
+                <td style="color: blue;"> {{ alpha[16] }}</td>
+            </tr>
+            {% for i in range(3) %}
+            {% if alpha[17+i] != none %}
+            <tr>
+                <td>Public space Discription</td>
+                <td style="color: blue;">{{ alpha[17+i] }}</td>
+            </tr>
+            {% endif %}
+            {% endfor %}
+            <tr>
+                <td>What is the nature of exercise you usually perform or observe in this space? (tick all that apply)</td>
+                <td style="color: blue;">{{ alpha[20] }}</td>
+            </tr>
+            {% if alpha[21] != none %}
+            <tr>
+                <td>Exercise Nature</td>
+                <td style="color: blue;">{{ alpha[21] }}</td>
+            </tr>
+            {% endif %}
+            <tr>
+                <td>How do you and/or other people exercise in this space?</td>
+                <td style="color: blue;">{{ alpha[22] }}</td>
+            </tr>
+            <tr>
+                <td>How is the exercise in this space organised?</td>
+                <td style="color: blue;">{{ alpha[23] }}</td>
+            </tr>
+            {% if alpha[24] != none %}
+            <tr>
+                <td>Who organise?</td>
+                <td style="color: blue;">{{ alpha[24] }}</td>
+            </tr>
+            {% endif %} 
+            <tr>
+                <td> Are you involved in the coordination, organisation or champion of any exercise this space?</td>
+                <td style="color: blue;"> {{ alpha[25] }}</td>
+            </tr>
+            {% if alpha[26] != none %} 
+            <tr>
+                <td>Nature of involvememt</td>
+                <td style="color: blue;"> {{ alpha[26] }}</td>
+            </tr>
+            {% endif %}
+            <tr>
+                <td>Are you aware of ANY exercise taking place in this space during the COVID-19 lockdowns?</td>
+                <td style="color: blue;">{{ alpha[27] }}</td>
+            </tr>
+            {% if alpha[28] != none %}
+            <tr>
+                <td>Activity type during lockdown</td>
+                <td style="color: blue;"> {{ alpha[28] }}</td>
+            </tr>
+            {% endif %}
+            <tr>
+                <td> Did you participate in any exercise in this space during the COVID-19 lockdowns?</td>
+                <td style="color: blue;"> {{ alpha[29] }}</td>
+            </tr>
+            {% if alpha[30] != none %}
+            <tr>
+                <td>Participate in lockdown discription</td>
+                <td style="color: blue;">
+                    <audio controls>
+                        <source src="{{ alpha[30] }}" type="audio/wav">
+                        Your browser does not support the audio element.
+                      </audio>
+                </td>
+            </tr>
+            {% endif %}
+            {% if alpha[31] != none %}
+            <tr>
+                <td></td>
+                <td style="color: blue;"> {{ alpha[31] }}<td>
+            </tr>
+            {% endif %}
+            {% if alpha[32] != none %}
+            <tr>
+                <td></td>
+                <td style="color: blue;">
+                    <audio controls>
+                        <source src="{{ alpha[32] }}" type="audio/wav">
+                        Your browser does not support the audio element.
+                      </audio>
+                </td>
+            </tr>
+            {% endif %}
+            <tr>
+                <td></td>
+                <td style="color: blue;"></td>
+            </tr>
+            {% if alpha[33] != none %}
+            <tr>
+                <td></td>
+                <td style="color: blue;"> {{ alpha[33] }}</td>
+            </tr>
+            {% endif %}
+            <tr>
+                <td> Do you think there are any aspects of this ALPhA space that reduce or increase the risk of INJURY OR DISEASE for people using this space for exercise?</td>
+                <td style="color: blue;"> {{ alpha[34] }}</td>
+            </tr>
+            <tr>
+                <td>Please select the option (only one) which describes your perception of health risk :</td>
+                <td style="color: blue;">{{ alpha[35] }}</td>
+            </tr>
+            {% for i in [36,38,40,42,44] %}
+            {% if alpha[i] %}
+            <tr>
+                <td>Your opinion about risk</td>
+                <td>
+                    <ul>
+                        <li><IMG SRC="{{ alpha[i] }}" width="360" height="500"></li>
+                        <li style="color: blue;">{{ alpha[i+1] }}</li>
+                    </ul>
+                </td>
+            </tr>
+            {% endif %}
+            {% endfor %}
+            {% if alpha[46] != none %}
+            <tr>
+                <td>Audio discription about risk</td>
+                <td>
+                    <audio controls>
+                        <source src="{{ alpha[46] }}" type="audio/wav">
+                        Your browser does not support the audio element.
+                      </audio>   
+                </td>
+            </tr>
+            {% endif %}
+            {% if alpha[47] != none %}
+            <tr>
+                <td>Risk injury discription</td>
+                <td style="color: blue;">{{ alpha[47] }}</td>
+            </tr>
+            {% endif %}
+            <tr>
+                <td>Do you think there are any aspects of this ALPhA space that influence SAFETY of people using this space for exercise?</td>
+                <td style="color: blue;">{{ alpha[48] }}</td>
+            </tr>
+            <tr>
+                <td> Please select the option (only one) which describes your perception of safety:</td>
+                <td style="color: blue;">{{ alpha[49] }}</td>
+            </tr>
+            {% for i in [50,52,54,56,58] %}
+            {% if alpha[i] %}
+            <tr>
+                <td>Safety Aspect(photo-opinion)</td>
+                <td>
+                    <ul>
+                        <li><IMG SRC="{{ alpha[i] }}" width="360" height="500"></li>
+                        <li style="color: blue;">{{ alpha[i+1] }}</li>
+                    </ul>
+                </td>
+            </tr>
+            {% endif %}
+            {% endfor %}
+            {% if alpha[60] != none %}
+            <tr>
+                <td>Safety Aspect (Audio discription)</td>
+                <td>
+                    <audio controls>
+                        <source src="{{ alpha[60] }}" type="audio/wav">
+                        Your browser does not support the audio element.
+                      </audio> 
+                </td>
+            </tr>
+            {% endif %}
+            {% if alpha[61] != none %}
+            <tr>
+                <td>Safety Aspect discription(text)</td>
+                <td style="color: blue;">{{ alpha[61] }}</td>
+            </tr>
+            {% endif %}
+            <tr>
+                <td> What is the relevance of this place to you? (select only one answer)</td>
+                <td style="color: blue;">{{ alpha[62] }}</td>
+            </tr>
+            {% if alpha[63] != none %}
+            <tr>
+                <td>place Relevance discription</td>
+                <td style="color: blue;">{{ alpha[63] }}</td>
+            </tr>
+            {% endif %}
+
+        </table>
+        <div>
+        </div>
+    </header>
+    </article>
+  {% endfor %}
+{% endblock %}
+{% block footer %}
+<!--footer-->
+<div id="footer-wrapper">
+    <h2 style="text-align: center;">Polimi student team:</h2>
+    <footer id="footer" class="container">
+        <div class="row">
+            <div class="col-3 col-6-medium col-12-small">
+                <!-------------------------------------------------------------------->
+                <div class="container">
+                    <div class="row justify-content-between align-items-center">
+                        <div class="col-md-6 col-lg-6">
+                            <div class="our_ability_img">
+                                <img src="../static/images/foto.jpeg" alt="Mohammed Abd Alslam">
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-lg-5">
+                            <div class="our_ability_member_text">
+                                <h4  style="color: black;"><strong>Mohammed</strong></h4>
+                                <ul>
+                                    <li><span class="ti-mouse"></span> speaking</li>
+                                    <li><span class="ti-heart-broken"></span>Spatial analysis</li>
+                                    <li><span class="ti-package"></span>Frontend Developer</li>
+                                    <li><span class="ti-headphone-alt"></span>Traditional surveying</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-------------------------------------------------------------------->
+                <div class="container">
+                    <div class="row justify-content-between align-items-center">
+                        <div class="col-md-6 col-lg-6">
+                            <div class="our_ability_img">
+                                <img src="../static/images/mustafa.jpg" alt="MUSTAFA">
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-lg-5">
+                            <div class="our_ability_member_text">
+                                <h4  style="color: black;"><strong>Mustafa</strong></h4>
+                                <ul>
+                                    <li><span class="ti-mouse"></span> speaking</li>
+                                    <li><span class="ti-heart-broken"></span>Spatial analysis</li>
+                                    <li><span class="ti-package"></span>Frontend Developer</li>
+                                    <li><span class="ti-headphone-alt"></span>Traditional surveying</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            <!-------------------------------------------------------------------->
+            <div class="container">
+                <div class="row justify-content-between align-items-center">
+                    <div class="col-md-6 col-lg-6">
+                        <div class="our_ability_img">
+                            <img src="../static/images/Daniel.jpg" alt="Daniel">
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-5">
+                        <div class="our_ability_member_text">
+                            <h4 style="color: black;"><strong>Daniel</strong></h4>
+                            <ul>
+                                <li><span class="ti-mouse"></span> speaking</li>
+                                <li><span class="ti-heart-broken"></span>Spatial analysis</li>
+                                <li><span class="ti-package"></span>Frontend Developer</li>
+                                <li><span class="ti-headphone-alt"></span>Traditional surveying</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-------------------------------------------------------------------->
+
+            </div>
+        </div>
+
+    </footer>
+</div>
+<!--end footer-->
+{% endblock %}
+
+</body>
+</html>

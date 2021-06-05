@@ -1,0 +1,55 @@
+{% extends 'main.html' %}
+
+{% block content %}
+<div class="smart-wrap">
+  <div class="smart-forms smart-container wrap-3">
+
+      <div class="form-header header-blue">
+          <h4><i class="fa fa-comments"></i> leave a comment.. </h4>
+      </div><!-- end .form-header section -->
+
+      <form method="post">
+          <div class="form-body theme-blue">
+              <div class="section">
+                  <label class="field prepend-icon">
+                      <textarea class="gui-textarea" id="comment" name="comment" >{{ request.form['comment'] or post[3] }}</textarea>
+                      <span class="field-icon"><i class="fa fa-comments"></i></span>
+                  </label>
+              </div><!-- end section -->
+              <div class="section">
+
+                  <span class="rating block">
+
+                      <span class="lbl-text"></span>
+
+                      <input class="rating-input" id="five-stars" type="radio" name="article-rate">
+                      <label class="rating-star" for="five-stars"><i class="fa fa-star"></i></label>
+
+                      <input class="rating-input" id="four-stars" type="radio" name="article-rate">
+                      <label class="rating-star" for="four-stars"><i class="fa fa-star"></i></label>
+
+                      <input class="rating-input" id="three-stars" type="radio" name="article-rate" checked>
+                      <label class="rating-star" for="three-stars"><i class="fa fa-star"></i></label>
+
+                      <input class="rating-input" id="two-stars" type="radio" name="article-rate">
+                      <label class="rating-star" for="two-stars"><i class="fa fa-star"></i></label>
+
+                      <input class="rating-input" id="one-star" type="radio" name="article-rate">
+                      <label class="rating-star" for="one-star"><i class="fa fa-star"></i></label>
+
+                  </span>
+
+              </div><!-- end  section -->
+
+          </div><!-- end .form-body section -->
+          <div class="form-footer">
+              <button type="submit" class="button btn-blue">Comment</button>
+          </div><!-- end .form-footer section -->
+      </form>
+
+  </div><!-- end .smart-forms section -->
+</div><!-- end .smart-wrap section -->
+<!-- <form action="{{ url_for('delete', id=post[1]) }}" method="post">
+  <input class="danger" type="submit" value="Delete" onclick="return confirm('Are you sure?');">
+</form>-->
+{% endblock %}

@@ -1,0 +1,104 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>comment</title>
+    <link rel="stylesheet" type="text/css" href="../static/css/smart-forms.css">
+    <link href="../static/css/bluetheme.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}">
+		<!--<link rel="stylesheet" type="text/css" href="../static/css/smart-forms.css">-->
+		<link rel="stylesheet" href="{{ url_for('static', filename='smart-forms.css') }}">
+        <!--<link href="../static/css/bluetheme.css" rel="stylesheet">-->
+		<link rel="stylesheet" href="{{ url_for('static', filename='bluetheme.css') }}">
+       <!-- <link href="../static/css/comment_order.css" rel="stylesheet">-->
+	   <link rel="stylesheet" href="{{ url_for('static', filename='comment_order.css') }}">
+	   <!--------------------------------------------------------------------------------->
+	   <link rel="stylesheet" href="{{ url_for('static', filename='start.css') }}">
+       <style>
+        .alert {
+        padding: 20px;
+        background-color: #f44336;
+        color: white;
+      }
+      
+      .closebtn {
+        margin-left: 15px;
+        color: white;
+        font-weight: bold;
+        float: right;
+        font-size: 22px;
+        line-height: 20px;
+        cursor: pointer;
+        transition: 0.3s;
+      }
+      
+      .closebtn:hover {
+        color: black;
+      }
+    
+    </style>
+</head>
+<body style="background-color: rgb(10, 9, 9);">
+    {% block header %}{% endblock %}
+    <!--==Error message==-->
+    {% for message in get_flashed_messages() %}
+    <div class="alert">
+        <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span> 
+        <strong>Error!</strong> {{message }}
+    </div>
+    {% endfor %}
+    <!--=================-->
+    <div class="smart-wrap">
+        <div class="smart-forms smart-container wrap-3">
+
+            <div class="form-header header-blue">
+                <h4><i class="fa fa-comments"></i> leave a comment.. </h4>
+            </div><!-- end .form-header section -->
+
+            <form method="post">
+                <div class="form-body theme-blue">
+                    <div class="section" data-validate="comment can not be empty">
+                        <label class="field prepend-icon">
+                            <textarea class="gui-textarea" id="comment" name="comment" placeholder="Describe your experiance..." required></textarea>
+                            <span class="field-icon"><i class="fa fa-comments"></i></span>
+                        </label>
+                    </div><!-- end section -->
+                    <div class="section">
+
+                        <span class="rating block">
+
+                            <span class="lbl-text"></span>
+
+                            <input class="rating-input" id="five-stars" type="radio" name="article-rate">
+                            <label class="rating-star" for="five-stars"><i class="fa fa-star"></i></label>
+
+                            <input class="rating-input" id="four-stars" type="radio" name="article-rate">
+                            <label class="rating-star" for="four-stars"><i class="fa fa-star"></i></label>
+
+                            <input class="rating-input" id="three-stars" type="radio" name="article-rate" checked>
+                            <label class="rating-star" for="three-stars"><i class="fa fa-star"></i></label>
+
+                            <input class="rating-input" id="two-stars" type="radio" name="article-rate">
+                            <label class="rating-star" for="two-stars"><i class="fa fa-star"></i></label>
+
+                            <input class="rating-input" id="one-star" type="radio" name="article-rate">
+                            <label class="rating-star" for="one-star"><i class="fa fa-star"></i></label>
+
+                        </span>
+
+                    </div><!-- end  section -->
+
+                </div><!-- end .form-body section -->
+                <div class="form-footer">
+                    <button type="submit" class="button btn-blue">Comment</button>
+                </div><!-- end .form-footer section -->
+            </form>
+
+        </div><!-- end .smart-forms section -->
+    </div><!-- end .smart-wrap section -->
+
+    <div></div><!-- end section -->
+
+</body>
+</html>

@@ -1,0 +1,26 @@
+{% extends 'main.html' %}
+
+
+
+{% block content %}
+  {% for post in posts %}
+    <article class="post">
+          <header>
+              <div>
+          <h1>{{ post[0] }}</h1>
+          <div class = "about"> on {{ post[2].strftime('%Y-%m-%d') }}</div>
+        </div>
+        {% if g.user[1] == post[0] %}
+        <a class = "action" href="{{ url_for('update', id=post[1]) }}">Edit</a>
+        {% endif %}
+      </header>
+      <p class = "body">{{ post[3] }}</p>
+    {% if not loop.last %}
+    </article>
+        {% if not loop.last %}
+      <hr>
+    {% endif %}
+      <hr>
+    {% endif %}
+  {% endfor %}
+{% endblock %}
