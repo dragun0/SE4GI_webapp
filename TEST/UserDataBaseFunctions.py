@@ -45,7 +45,7 @@ def mysession():
 def get_post(id):
     conn = conn_db()
     cur = conn.cursor()
-    cur.execute("SELECT * FROM post WHERE post.post_id = %s", (id,))
+    cur.execute("SELECT * FROM post WHERE post.comment_id = %s", (id,))
     post = cur.fetchone()
     if post is None:
         abort(404, "Post id {0} doesn't exist.".format(id))

@@ -271,8 +271,8 @@ def update(id):
                
                 conn = conn_db()
                 cur = conn.cursor()
-                cur.execute('UPDATE post SET  body = %s'
-                               'WHERE post_id = %s', 
+                cur.execute('UPDATE post SET  comment = %s'
+                               'WHERE comment_id = %s', 
                                (body, id)
                                )
                 cur.close()
@@ -291,7 +291,7 @@ def update(id):
 def delete(id):
     conn = conn_db()
     cur = conn.cursor()
-    cur.execute('DELETE FROM post WHERE post_id = %s', (id,))
+    cur.execute('DELETE FROM post WHERE comment_id = %s', (id,))
     conn.commit()
     conn.close()
     return redirect(url_for('show_comment'))                           

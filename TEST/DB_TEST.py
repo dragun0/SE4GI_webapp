@@ -36,7 +36,7 @@ commands =(
         """
         CREATE TABLE post (
             comment_id SERIAL PRIMARY KEY,
-            author_id INTEGER NOT NULL UNIQUE,
+            author_id INTEGER NOT NULL,
             created TIMESTAMP DEFAULT NOW(),
             comment VARCHAR(500) NOT NULL,
             FOREIGN KEY (author_id) REFERENCES sys_table (userid)

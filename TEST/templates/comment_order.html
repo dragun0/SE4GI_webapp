@@ -8,6 +8,9 @@
             {% if g.user[1] == post[0] %}
             <li><a href="{{url_for('update',id=post[1])}}">Edit</a></li>
             <li><a href="/delete">Delete</a></li>
+            <form action="{{ url_for('delete', id=post[1]) }}" method="post">
+              <input class="danger" type="submit" value="Delete" onclick="return confirm('Are you sure?');">
+            </form>
             {% endif %}
             <li class="date">commented on {{ post[2].strftime('%Y-%m-%d') }}</li>
             <p class = "body">{{ post[3] }}</p>
