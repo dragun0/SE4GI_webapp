@@ -96,9 +96,8 @@ def show_comment():
     conn = conn_db()
     cur = conn.cursor()
     cur.execute(
-            """SELECT sys_table.username, post.post_id, post.created, post.body 
-               FROM sys_table, post WHERE  
-                    sys_table.userid = post.author_id"""
+            """SELECT sys_table.username, post.comment_id, post.created, post.comment 
+               FROM sys_table, post WHERE sys_table.userid = post.author_id"""
                     )
     posts = cur.fetchall()
     cur.close()
@@ -244,7 +243,7 @@ def comment():
             else : 
                     conn = conn_db()
                     cur = conn.cursor()
-                    cur.execute('INSERT INTO post (body, author_id) VALUES ( %s, %s)', 
+                    cur.execute('INSERT INTO post (comment, author_id) VALUES ( %s, %s)', 
                                (body, g.user[0]))
                     cur.close()
                     conn.commit()
@@ -253,7 +252,7 @@ def comment():
         else :
             return render_template('Extend.html')
     else:
-        error = 'login first!'
+        error = 'You must be logged in to comment!'
         flash(error)
         return redirect(url_for('login'))
 

@@ -18,7 +18,7 @@ from psycopg2 import connect
 # Cleanup instruction drops existing tables
 cleanup = (
         'DROP TABLE IF EXISTS sys_table CASCADE',
-        'DROP TABLE IF EXISTS comment_table'
+        'DROP TABLE IF EXISTS post'
         )
 
 # Commands instruction creates the tables
@@ -34,13 +34,12 @@ commands =(
         """
         ,
         """
-        CREATE TABLE comment_table (
+        CREATE TABLE post (
             comment_id SERIAL PRIMARY KEY,
-            userid INTEGER NOT NULL UNIQUE,
+            author_id INTEGER NOT NULL UNIQUE,
             created TIMESTAMP DEFAULT NOW(),
             comment VARCHAR(500) NOT NULL,
-            FOREIGN KEY (userid)
-                    REFERENCES sys_table (userid)
+            FOREIGN KEY (author_id) REFERENCES sys_table (userid)
         )
         """)
 
