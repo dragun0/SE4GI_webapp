@@ -192,6 +192,7 @@ def About():
 # Decorator to establish the route for the show comment page and its function
 @app.route('/show_comment')
 def show_comment():
+    mysession()
     conn = conn_db()
     cur = conn.cursor()
     cur.execute(
@@ -202,7 +203,7 @@ def show_comment():
     cur.close()
     conn.commit()
     conn.close()
-    mysession()
+    
     return render_template('blog/comment_order.html', posts=posts)
 
 
