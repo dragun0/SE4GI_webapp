@@ -72,7 +72,7 @@ app.secret_key = '!@3QWeASdZXc'
 #     return render_template('contact.html')
 
          
-
+@app.route('/', methods=('GET', 'POST'))
 @app.route('/Register', methods=('GET', 'POST'))
 @app.route('/register', methods=('GET', 'POST'))
 def Register():
@@ -141,14 +141,14 @@ def login():
         if error is None:
             session.clear()
             session['userid'] = sys[0]
-            return redirect(url_for('About'))
+            return redirect(url_for('HomeWithMap'))
         flash(error)
         
     return render_template('sign_in.html')
 
 
 @app.route('/HomeWithMap')
-def plot(): 
+def HomeWithMap(): 
     
     mysession()
     make_plot()
