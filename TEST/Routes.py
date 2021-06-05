@@ -247,7 +247,7 @@ def comment():
 @app.route('/logout')
 def logout():
     session.clear()
-    return redirect(url_for('About'))
+    return redirect(url_for('HomeWithMap'))
 
 
 
