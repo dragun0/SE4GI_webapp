@@ -279,7 +279,7 @@ def make_plot():
     exerciseTypeSelectorWidget.js_on_change("value", ExerciseTypecallback)
     ExerciseExplanation1 = Div(text="""Click the box below to chose your sport!""", width=200, height=100)
     ExerciseExplanation2 = Div(text="""'Others' may include: Boxing, Weightlifting, Calisthenics, etc.""", width=200, height=100)
-    ExerciseExplanation3 = Div(text="""Click on an ALPhA point of your choice to find out more -->""" )
+    ExerciseExplanation3 = Div(text="""Click an ALPhA location of your choice to find out more -->""" )
     #create Safety risk button
     #define labels for the two selection options
     #'value's for a CheckboxButtonGroup are called 'active's. carry a value of either 0 (Increased safety) or 1 (Decreased safety)
