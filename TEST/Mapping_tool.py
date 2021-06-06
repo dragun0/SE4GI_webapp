@@ -251,7 +251,7 @@ def make_plot():
                   y_range=(y_min, y_max),
                   x_axis_type='mercator',
                   y_axis_type='mercator',
-                  width=700,
+                  width=900,
                   height=500
                   )
     
