@@ -36,7 +36,8 @@ def start():
 @app.route('/contact' ,methods=('GET', 'POST'))
 @app.route('/Contact' , methods=('GET', 'POST'))
 def contact():
-     if request.method == 'POST':
+    mysession() 
+    if request.method == 'POST':
         name = request.form['name']
         email = request.form['email']
         message = request.form['message']
@@ -69,7 +70,7 @@ def contact():
             conn.close()
             return redirect(url_for('home'))
         
-     return render_template('contact.html')
+    return render_template('contact.html')
 
          
 @app.route('/', methods=('GET', 'POST'))
