@@ -1,132 +1,309 @@
 <!doctype html>
 <html lang="en">
   <head>
-  	<title>Contact us!</title>
+  	<title>Contact</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
 	<link href='https://fonts.googleapis.com/css?family=Roboto:400,100,300,700' rel='stylesheet' type='text/css'>
 
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    
 	
 	<link rel="stylesheet" href="../static/contact/css/style.css">
+	<link rel="stylesheet" href="../static/css/start.css" />
+	    <link rel="stylesheet" href="../static/css/bootstrap.min.css">
+        <!-- animate CSS -->
+        <link rel="stylesheet" href="../static/css/animate.css">
+        <!-- owl carousel CSS -->
+        <link rel="stylesheet" href="../static/css/owl.carousel.min.css">
+        <!-- themify CSS -->
+        <link rel="stylesheet" href="../static/css/themify-icons.css">
+        <!-- flaticon CSS -->
+        <link rel="stylesheet" href="../static/css/flaticon.css">
+        <!-- magnific popup CSS -->
+        <link rel="stylesheet" href="../static/css/magnific-popup.css">
+        <!-- nice select CSS -->
+        <link rel="stylesheet" href="../static/css/nice-select.css">
+        <!-- swiper CSS -->
+        <link rel="stylesheet" href="../static/css/slick.css">
+      <!-- style CSS -->
+      <link rel="stylesheet" href="../static/css/style.css">
 
 	</head>
-	<body>
-	<section class="ftco-section">
-		<div class="container">
-			<div class="row justify-content-center">
-				<div class="col-md-6 text-center mb-5">
-					
+	<body class="homepage is-preload">
+		<div id="page-wrapper">
+			<div id="header-wrapper" class="margin">
+				<div class="container">
+		
+					<!-- Header -->
+						<header id="header">
+							<div class="inner">
+		
+								<!-- Logo -->
+									<h1><a href="/HomeWithMap"  id="logo">ALPHA SPACE</a></h1>
+		
+								<!-- Nav -->
+									<nav id="nav">
+										
+										<ul>
+											{% if g.user %}
+											  <li><a href="/show_comment">Blog</a></li>
+                                        <li><a href="/comment">Leave a comment</a></li>
+                                        <li><a href="/about">About</a></li>
+                                        <li><a href="/contact">Contact</a></li>
+                                        <li><a href="/logout">Logout</a></li>
+
+											
+											
+											{% else %}
+										    <li><a href="/login">Log in</a></li>
+                                        <li><a href="/register">Sign up</a></li>
+                                         <li><a href="/show_comment">Blog</a></li>
+                                        <li><a href="/comment">Leave a comment</a></li>
+                                        <li><a href="/about">About</a></li>
+                                        <li><a href="/contact">Contact</a></li>
+											{% endif %}
+										
+										</ul>
+									</nav>
+		
+							</div>
+						</header>
+		
+					<!--content-->
 				</div>
 			</div>
-			<div class="row justify-content-center">
-				<div class="col-md-12">
-					<div class="wrapper">
-						<div class="row mb-5">
-							<div class="col-md-3">
-								<div class="dbox w-100 text-center">
-			        		<div class="icon d-flex align-items-center justify-content-center">
-			        			<span class="fa fa-map-marker"></span>
-			        		</div>
-			        		<div class="text">
-				            <p><span>Address:</span>Italy,Milano,Leonardo davinci,20133</p>
-				          </div>
-			          </div>
-							</div>
-							<div class="col-md-3">
-								<div class="dbox w-100 text-center">
-			        		<div class="icon d-flex align-items-center justify-content-center">
-			        			<span class="fa fa-phone"></span>
-			        		</div>
-			        		<div class="text">
-				            <p><span>Phone:</span> <a href="tel://3516784833">+39 3516784833</a></p>
-				          </div>
-			          </div>
-							</div>
-							<div class="col-md-3">
-								<div class="dbox w-100 text-center">
-			        		<div class="icon d-flex align-items-center justify-content-center">
-			        			<span class="fa fa-paper-plane"></span>
-			        		</div>
-			        		<div class="text">
-				            <p><span>Email:</span> <a href="mailto:mohammedabd@mail.polimi.it">info@yoursite.com</a></p>
-				          </div>
-			          </div>
-							</div>
-							<div class="col-md-3">
-								<div class="dbox w-100 text-center">
-			        		<div class="icon d-flex align-items-center justify-content-center">
-			        			<span class="fa fa-globe"></span>
-			        		</div>
-			        		<div class="text">
-				            <p><span>Website</span> <a href="#">yoursite.com</a></p>
-				          </div>
-			          </div>
-							</div>
+			{% if g.user %}
+			<h3 style="color: red;">logged in as {{ g.user[1] }}!</h3>
+			{% endif %}
+		</div>
+		<div id="page-wrapper">
+			<!--========================================================-->
+			<section class="ftco-section">
+				<div class="container">
+					<div class="row justify-content-center">
+						<div class="col-md-6 text-center mb-5">
+							<h2 class="heading-section">Contact us!</h2>
 						</div>
-						<div class="row no-gutters">
-							<div class="col-md-7">
-								<div class="contact-wrap w-100 p-md-5 p-4">
-									<h3 class="mb-4">Contact Us</h3>
-									<div id="form-message-warning" class="mb-4"></div> 
-				      		<div id="form-message-success" class="mb-4">
-				            Your message was sent, thank you!
-				      		</div>
-									<form method="POST" id="contactForm" name="contactForm" class="contactForm">
-										<div class="row">
-											<div class="col-md-6">
-												<div class="form-group">
-													<label class="label" >Full Name</label>
-													<input type="text" class="form-control" name="name" id="name" placeholder="Name">
-												</div>
-											</div>
-											<div class="col-md-6"> 
-												<div class="form-group">
-													<label class="label" >Email Address</label>
-													<input type="email" class="form-control" name="email" id="email" placeholder="Email">
-												</div>
-											</div>
-											<!--============================================
-											<div class="col-md-12">
-												<div class="form-group">
-													<label class="label" for="subject">Subject</label>
-													<input type="text" class="form-control" name="subject" id="subject" placeholder="Subject">
-												</div>
-											</div>
-											 ===================================================-->
-											<div class="col-md-12">
-												<div class="form-group">
-													<label class="label">Message</label>
-													<textarea name="message" class="form-control" id="message" cols="30" rows="4" placeholder="Message"></textarea>
-												</div>
-											</div>
-											<div class="col-md-12">
-												<div class="form-group">
-													<input type="submit" value="Send Message" class="btn btn-primary">
-													<div class="submitting"></div>
-												</div>
-											</div>
-										</div>
-									</form>
+					</div>
+					<div class="row justify-content-center">
+						<div class="col-md-12">
+							<div class="wrapper">
+								<div class="row no-gutters mb-5">
+									
+									
+									<div class="col-md-5 d-flex align-items-stretch">
+										<div id="map">
+							  </div>
+									</div>
 								</div>
-							</div>
-							<div class="col-md-5 d-flex align-items-stretch">
-								<div class="info-wrap w-100 p-5 img" style="background-image: url(../static/images/lag.jpg);">
-			          </div>
+								<div class="row">
+									<div class="col-md-3">
+										<div class="dbox w-100 text-center">
+									<div class="icon d-flex align-items-center justify-content-center">
+										<span class="fa fa-map-marker"></span>
+									</div>
+									<div class="text">
+                                        <h3>Address:</h3>
+									<p>
+                                        <span>Italy,Milano,Leonardo davinci,20133</span>
+                                    </p>
+								  </div>
+							  </div>
+									</div>
+									<div class="col-md-3">
+										<div class="dbox w-100 text-center">
+									<div class="icon d-flex align-items-center justify-content-center">
+										<span class="fa fa-phone"></span>
+									</div>
+									<div class="text">
+                                        <h3>Phone:</h3>
+									<p><span>Mohammed</span><a href="tel://3516784833">+39 3516784833</a></p>
+                                    <p><span>Mustafa</span><a href="tel://3517076023">+39 3517076023</a></p>
+                                    <p><span>Daniel</span><a href="tel://3114570269">+57 3114570269</a></p>
+                                    <p><span>Leonie</span><a href="tel://1771466801">+49 1771466801</a></p>
+								  </div>
+							  </div>
+									</div>
+									<div class="col-md-3">
+										<div class="dbox w-100 text-center">
+									<div class="icon d-flex align-items-center justify-content-center">
+										<span class="fa fa-paper-plane"></span>
+									</div>
+									<div class="text">
+                                        <h3>Email:</h3>
+									<p><span>Mohammed</span><a href="mailto:MohammedAbd@mail.polimi.it">MohammedAbd@mail.polimi.it</a></p>
+                                    <p><span>Mustafa</span><a href="mailto:mustafa.abdalla@mail.polimi.it">mustafa.abdalla@mail.polimi.it</a></p>
+                                    <p><span>Leonie</span><a href="mailto:leonie.dragun@mail.polimi.it">leonie.dragun@mail.polimi.it</a></p>
+                                    <p><span>Daniel</span><a href="mailto:danielalberto.aguirre@mail.polimi.it">danielalberto.aguirre@mail.polimi.it</a></p>
+								  </div>
+							  </div>
+									</div>
+									<div class="col-md-3">
+										<div class="dbox w-100 text-center">
+									<div class="icon d-flex align-items-center justify-content-center">
+										<span class="fa fa-globe"></span>
+									</div>
+									<div class="text">
+                                        <h3>Website</h3>
+									<p>
+                                        <span>Mohammed</span>
+                                        <a href="#"><i style="font-size:24px;color:blue" class="fa">&#xf230;</i></a><!--facebook-->
+                                        <a href="#"><i style="font-size:24px;color:blue" class="fa">&#xf08c;</i></a><!--linkedin-->
+                                        <a href="#"><i style="font-size:24px;color:red" class="fa">&#xf1a0;</i></a><!--Gmail-->
+                                    </p>
+                                    <p>
+                                        <span>Mustafa</span> 
+                                        <a href="#"><i style="font-size:24px;color:blue" class="fa">&#xf230;</i></a><!--facebook-->
+                                        <a href="#"><i style="font-size:24px;color:blue" class="fa">&#xf08c;</i></a><!--linkedin-->
+                                        <a href="#"><i style="font-size:24px;color:red" class="fa">&#xf1a0;</i></a><!--Gmail-->
+                                    </p>
+                                    <p>
+                                        <span>Daniel</span>
+                                         <a href="#"><i style="font-size:24px;color:blue" class="fa">&#xf230;</i></a><!--facebook-->
+                                         <a href="#"><i style="font-size:24px;color:blue" class="fa">&#xf08c;</i></a><!--linkedin-->
+                                         <a href="#"><i style="font-size:24px;color:red" class="fa">&#xf1a0;</i></a><!--Gmail-->
+                                    </p>
+                                    <p>
+                                        <span>Leonie</span>
+                                         <a href="#"><i style="font-size:24px;color:blue" class="fa">&#xf230;</i></a><!--facebook-->
+                                         <a href="#"><i style="font-size:24px;color:blue" class="fa">&#xf08c;</i></a><!--linkedin-->
+                                         <a href="#"><i style="font-size:24px;color:red" class="fa">&#xf1a0;</i></a><!--Gmail-->
+                                        </p>
+								  </div>
+							  </div>
+									</div>
+								</div>
 							</div>
 						</div>
 					</div>
 				</div>
-			</div>
+			</section>
+			<!--========================================================-->
 		</div>
-	</section>
+	
+	<!--============================FOOTER===============================================-->
+    	<!-- Footer Wrapper -->
+        <div id="footer-wrapper">
+            <h2 style="text-align: center;">Polimi student team:</h2>
+            <footer id="footer" class="container">
+                <div class="row">
+                    <div class="col-3 col-6-medium col-12-small">
+                        
+                        <div class="container">
+                            <div class="row justify-content-between align-items-center">
+                                <div class="col-md-6 col-lg-6">
+                                    <div class="our_ability_img">
+                                        <img src="../static/images/foto.jpeg" alt="Mohammed Abd Alslam">
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-lg-5">
+                                    <div class="our_ability_member_text">
+                                        <h4  style="color: black;"><strong>Mohammed</strong></h4>
+                                        <ul>
+                                            <li><span class="ti-mouse"></span> speaking</li>
+                                            <li><span class="ti-heart-broken"></span>Spatial analysis</li>
+                                            <li><span class="ti-package"></span>Frontend Developer</li>
+                                            <li><span class="ti-headphone-alt"></span>Traditional surveying</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-------------------------------------------------------------------->
+                        <div class="container">
+                            <div class="row justify-content-between align-items-center">
+                                <div class="col-md-6 col-lg-6">
+                                    <div class="our_ability_img">
+                                        <img src="../static/images/mustafa.jpg" alt="MUSTAFA">
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-lg-5">
+                                    <div class="our_ability_member_text">
+                                        <h4  style="color: black;"><strong>Mustafa</strong></h4>
+                                        <ul>
+                                            <li><span class="ti-mouse"></span> speaking</li>
+                                            <li><span class="ti-heart-broken"></span>Spatial analysis</li>
+                                            <li><span class="ti-package"></span>Frontend Developer</li>
+                                            <li><span class="ti-headphone-alt"></span>Traditional surveying</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    <!-------------------------------------------------------------------->
+                    <div class="container">
+                        <div class="row justify-content-between align-items-center">
+                            <div class="col-md-6 col-lg-6">
+                                <div class="our_ability_img">
+                                    <img src="../static/images/Daniel.jpg" alt="Daniel">
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-lg-5">
+                                <div class="our_ability_member_text">
+                                    <h4 style="color: black;"><strong>Daniel</strong></h4>
+                                    <ul>
+                                        <li><span class="ti-mouse"></span> speaking</li>
+                                        <li><span class="ti-heart-broken"></span>Spatial analysis</li>
+                                        <li><span class="ti-package"></span>Frontend Developer</li>
+                                        <li><span class="ti-headphone-alt"></span>Traditional surveying</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-------------------------------------------------------------------->
+
+
+                    </div>
+                </div>
+
+            </footer>
+        </div>
+
+	<!--============================END FOOTER===============================================-->
+	<!--============================SCRIPT=========================================-->
 
 	<script src="../static/contact/js/jquery.min.js"></script>
   <script src="../static/contact/js/popper.js"></script>
   <script src="../static/contact/js/bootstrap.min.js"></script>
   <script src="../static/contact/js/jquery.validate.min.js"></script>
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
+  <script src="../static/contact/js/google-map.js"></script>
   <script src="../static/contact/js/main.js"></script>
+  <script src="../static/js/jquery.min.js"></script>
+	<script src="../static/js/jquery.dropotron.min.js"></script>
+	<script src="../static/js/browser.min.js"></script>
+	<script src="../static/js/breakpoints.min.js"></script>
+	<script src="../static/js/util.js"></script>
+	<script src="../static/js/main.js"></script>
+	<script src="../static/js/jquery-1.12.1.min.js"></script>
+    <!-- popper js -->
+    <script src="../static/js/popper.min.js"></script>
+    <!-- bootstrap js -->
+    <script src="../static/js/bootstrap.min.js"></script>
+    <!-- easing js -->
+    <script src="../static/js/jquery.magnific-popup.js"></script>
+    <!-- swiper js -->
+    <script src="../static/js/swiper.min.js"></script>
+    <!-- swiper js -->
+    <script src="../static/js/masonry.pkgd.js"></script>
+    <!-- particles js -->
+    <script src="../static/js/owl.carousel.min.js"></script>
+    <script src="../static/js/jquery.nice-select.min.js"></script>
+    <!-- swiper js -->
+    <script src="../static/js/slick.min.js"></script>
+    <script src="../static/js/jquery.counterup.min.js"></script>
+    <script src="../static/js/waypoints.min.js"></script>
+    <!-- contact js -->
+    <script src="../static/js/jquery.ajaxchimp.min.js"></script>
+    <script src="../static/js/jquery.form.js"></script>
+    <script src="../static/js/jquery.validate.min.js"></script>
+    <script src="../static/js/mail-script.js"></script>
+    <script src="../static/js/contact.js"></script>
+    <!-- custom js -->
+    <script src="../static/js/custom.js"></script>
 
 	</body>
 </html>
