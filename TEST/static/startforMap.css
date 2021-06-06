@@ -55,6 +55,8 @@ input {
     border-image: initial;
 }
 
+
+
 h1 {
     display: block;
     font-size: 2em;
@@ -64,6 +66,14 @@ h1 {
     margin-inline-end: 0px;
     font-weight: bold;
 }
+
+.link {
+    color: -webkit-link;
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+
 
 .bk-root .choices_input{
 display: inline-block !important;
@@ -2381,6 +2391,8 @@ select:-internal-list-box option:checked {
 					display: inline-block;
 					width: 3em;
 				}
+
+
 
 				#navPanel .indent-4 {
 					display: inline-block;
