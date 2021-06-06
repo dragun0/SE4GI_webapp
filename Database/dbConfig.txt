@@ -1,1 +1,0 @@
-postgresql://postgres:kotxino35@localhost:5433/SE4GI
