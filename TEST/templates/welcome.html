@@ -30,13 +30,7 @@
     <!-- favicons
 	================================================== -->
     <style>
-        #mo{
-    width:100%; 
-    background: url(yourimage);
-}
-#mu{
-    margin: 0 auto; width: 960px;
-}
+
 ul {
   list-style-type: none;
   margin: 0;
@@ -73,7 +67,9 @@ li a:hover {
 			<ul class="header-main-nav">
                 <li><h3><a href="{{ url_for('HomeWithMap') }}">Alpha space</a></h3></li>
                 <li><h3><a href="{{ url_for('login') }}"  >Login</a></h3></li>
-                <li><a href="{{ url_for('Register') }}" title="sign-up" class="button button-primary cta">Sign up</a></li>	
+                <li><a href="{{ url_for('Register') }}" title="sign-up" class="button button-primary cta">Sign up</a></li>
+		<li><h3><a href="{{ url_for('contact') }}">contact us</a></h3></li>
+				
                 
 			</ul>
            
