@@ -158,6 +158,7 @@ def HomeWithMap():
 @app.route("/portfolio")
 @app.route("/Portfolio")
 def portfolio():
+    mysession()
     
     selectedID = request.args.get('id')
     alpha = get_alpha(selectedID)
