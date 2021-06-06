@@ -33,43 +33,10 @@ def start():
     return render_template('welcome.html')
 
 # Decorator to establish the route for the contact page and its function
-@app.route('/contact' ,methods=('GET', 'POST'))
-@app.route('/Contact' , methods=('GET', 'POST'))
+@app.route('/contact')
+@app.route('/Contact')
 def contact():
     mysession() 
-    if request.method == 'POST':
-        name = request.form['name']
-        email = request.form['email']
-        message = request.form['message']
-        error= None
-        
-        if not name:
-            error = 'Enter username'
-        elif not email:
-            error = 'Enter Email'
-        if not message:
-            error= 'Enter message'
-        else:
-            conn = connect("dbname=student user=postgres password=user")
-            cur = conn.cursor()
-            cur.execute('SELECT email FROM sys_table WHERE email = %s', (email,))
-            if cur.fetchone() is not None:
-                cur.execute('INSERT INTO contact (geust) VALUES (%s)',
-                (name))
-                cur.close()
-                conn.commit()
-                conn.close()
-        if error is not None:
-            conn = connect("dbname=student user=postgres password=user")
-            cur = conn.cursor()
-            cur.execute(
-                'INSERT INTO contact (name,email,subject,message) VALUES (%s, %s,%s, %s)',
-                (name,email,message))
-            cur.close()
-            conn.commit()
-            conn.close()
-            return redirect(url_for('home'))
-        
     return render_template('contact.html')
 
          
