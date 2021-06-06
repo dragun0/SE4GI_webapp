@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+
+<html class="no-js" lang="en">
+
+
+<head>
+
+    <!--- basic page needs
+   ================================================== -->
+    <meta charset="utf-8">
+    <title>Welcome</title>
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- mobile specific metas
+   ================================================== -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- CSS
+   ================================================== -->
+    <link rel="stylesheet" href="../static/welcome/css/base.css">
+    <link rel="stylesheet" href="../static/welcome/css/vendor.css">
+    <link rel="stylesheet" href="../static/welcome/css/main.css">
+
+    <!-- script
+   ================================================== -->
+    <script src="../static/welcome/js/modernizr.js"></script>
+    <script src="../static/welcome/js/pace.min.js"></script>
+
+    <!-- favicons
+	================================================== -->
+    <style>
+        #mo{
+    width:100%; 
+    background: url(yourimage);
+}
+#mu{
+    margin: 0 auto; width: 960px;
+}
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #333;
+}
+
+li {
+  float: left;
+}
+
+li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+li a:hover {
+  background-color: #111;
+}
+        
+    </style>
+</head>
+
+<body>
+
+    <!-- header 
+   ================================================== -->
+     
+	   	<div>
+			<ul class="header-main-nav">
+                <li><h3><a href="{{ url_for('About') }}">Alpha space</a></h3></li>
+                <li><h3><a href="{{ url_for('login') }}"  >login</a></h3></li>
+                <li><a href="{{ url_for('Register') }}" title="sign-up" class="button button-primary cta">Registration</a></li>	
+                
+			</ul>
+           
+                
+          
+
+            
+		</div>
+   <!-- /header -->
+
+
+   <!-- home
+   ================================================== -->
+   <section id="home" data-parallax="scroll" data-image-src="../static/images/alpha.jpg" data-natural-width=3000 data-natural-height=2000>
+
+        <div class="overlay"></div>
+        <div class="home-content">        
+
+            <div class="row contents">                     
+                <div class="home-content-left">
+
+                    <h3 data-aos="fade-up">Welcome to Alpha space</h3>
+
+                    <h1 data-aos="fade-up">
+                        keep healthy <br>
+                        ,safe and look <br>
+                        for your space.
+                    </h1>                                       
+
+                </div>
+            </div>
+
+        </div> <!-- end home-content -->
+
+    </section> <!-- end home -->  
+                 <!-- Java Script
+    ================================================== -->
+    <script src="../static/welcome/js/jquery-2.1.3.min.js"></script>
+    <script src="../static/welcome/js/plugins.js"></script>
+    <script src="../static/welcome/js/main.js"></script>
+
+</body>
+
+</html>
