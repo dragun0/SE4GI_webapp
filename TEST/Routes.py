@@ -26,11 +26,11 @@ app.secret_key = '!@3QWeASdZXc'
 
 
 # Decorator to establish the route for the main page and its function
-#@app.route('/')
-#@app.route('/home')
-#@app.route('/Home')
-#def home():
-#    return render_template('home.html')
+@app.route('/')
+@app.route('/start')
+@app.route('/Start')
+def start():
+    return render_template('welcome.html')
 
 # Decorator to establish the route for the contact page and its function
 #@app.route('/contact' ,methods=('GET', 'POST'))
