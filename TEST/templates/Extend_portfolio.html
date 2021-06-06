@@ -110,14 +110,28 @@
                 <td> Which type of public space does the photo or description represent?</td>
                 <td style="color: blue;"> {{ alpha[16] }}</td>
             </tr>
-            {% for i in range(3) %}
-            {% if alpha[17+i] != none %}
+            {% if alpha[17] != none %}
             <tr>
                 <td>Public space description</td>
-                <td style="color: blue;">{{ alpha[17+i] }}</td>
+                <td style="color: blue;">{{ alpha[17] }}</td>
             </tr>
             {% endif %}
-            {% endfor %}
+            {% if alpha[18] != none %}
+            <tr> 
+                <td>Audio Description</td>
+                <td><audio controls>
+                    <source src="{{ alpha[18] }}" type="audio/wav">
+                    Your browser does not support the audio element.
+                  </audio>
+                </td>
+            </tr>
+            {% endif %}
+            {% if alpha[19] != none %}
+            <tr>
+                <td>Public space description</td>
+                <td style="color: blue;">{{ alpha[19] }}</td>
+            </tr>
+            {% endif %}
             <tr>
                 <td>What is the nature of the exercise you usually perform here, or observe in this space? (tick all that apply)</td>
                 <td style="color: blue;">{{ alpha[20] }}</td>
