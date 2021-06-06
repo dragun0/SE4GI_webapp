@@ -29,6 +29,8 @@ article, aside, details, figcaption, figure,
 footer, header, hgroup, menu, nav, {
 	display: block;}
 
+
+
 input {
     -webkit-writing-mode: horizontal-tb !important;
     text-rendering: auto;
@@ -53,7 +55,15 @@ input {
     border-image: initial;
 }
 
-
+h1 {
+    display: block;
+    font-size: 2em;
+    margin-block-start: 0.67em;
+    margin-block-end: 0.67em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    font-weight: bold;
+}
 
 .bk-root .choices_input{
 display: inline-block !important;
