@@ -4,7 +4,7 @@ Created on Sat Jun  5 17:24:28 2021
 
 @author: leoni
 """
-from flask import Flask, render_template, request, redirect, url_for, session, flash, g
+from flask import session, g
 from psycopg2 import connect
 from werkzeug.exceptions import abort
 
