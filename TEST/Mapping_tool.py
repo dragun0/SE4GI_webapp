@@ -7,9 +7,7 @@ Created on Sun May 30 19:28:19 2021
 
 from flask import (Flask, render_template, request, flash, redirect, abort, session, url_for)
 import pandas as pd
-import geopandas as gpd
-import numpy as np
-from sqlalchemy import create_engine
+
 from bokeh.models import *
 from bokeh.plotting import * 
 from bokeh.io import *
@@ -18,12 +16,7 @@ from bokeh.transform import *
 from bokeh.layouts import *
 from bokeh.models.widgets import *
 from bokeh.embed import *
-from bokeh.resources import CDN
-from bokeh.embed import server_document
-import subprocess
 from bokeh.tile_providers import get_provider, OSM
-#from jinja2.environment import Template
-import jinja2
 from Synchronizer import *
 
 
@@ -323,7 +316,6 @@ def make_plot():
     plot.yaxis.visible=False
     plot.circle_cross('x','y', source=pointSource, view=view, fill_color = 'blue', size = 10)
     
-   # point_hover = HoverTool(tooltips=[('id','@5a2_ALPhA_Photo')], mode='mouse', point_policy='follow_mouse')
     
    #location displayed in cartesian coordinates
     point_hover = HoverTool(
@@ -348,7 +340,6 @@ def make_plot():
         """
     )
     
-    # <span style="font-size: 15px; color: #966;">[$index]</span>
     
     plot.tools.append(point_hover)
 
@@ -357,20 +348,13 @@ def make_plot():
 
  
     plot.add_tile(get_provider(OSM))
-#    map.level='underlay'
     
     
     maplayout = row(widgetbox(ExerciseExplanation1, exerciseTypeSelectorWidget, ExerciseExplanation2, SafetyButtons, HealthButtons, OrganisationButtons, CovidLockdownButtons, ExerciseExplanation3), plot)
  
     output_file("./templates/map.html")
     
-#    curdoc().add_root(maplayout)
-#   curdoc().theme = 'night_sky'
     save(maplayout)
-    
-    #mapWithFilteringTool = column(widgetbox(exerciseTypeSelectorWidget), plot)
-    #curdoc().add_root(row(maplayout, plot, width=800))
-  
     
     return 'mapping'
 
