@@ -5,7 +5,7 @@ Created on Sun May 30 19:28:19 2021
 @author: leoni
 """
 
-from flask import (Flask, render_template, request, flash, redirect, abort, session, url_for)
+
 import pandas as pd
 
 from bokeh.models import *
@@ -17,7 +17,7 @@ from bokeh.layouts import *
 from bokeh.models.widgets import *
 from bokeh.embed import *
 from bokeh.tile_providers import get_provider, OSM
-from Synchronizer import *
+from Synchronizer import  Load_gdf_LAGOS_DB
 
 
 
