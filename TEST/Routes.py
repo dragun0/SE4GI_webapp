@@ -11,12 +11,12 @@ D. Aguirre, L. Dragun
 # ----------------------------------------------------------------------------#
 
 # Needed libraries import
-from flask import (Flask, render_template, request, flash, redirect, abort, session, url_for)
+from flask import Flask, render_template, request, flash, redirect, abort, session, url_for, g
 from werkzeug.security import check_password_hash, generate_password_hash
 
-from UserDataBaseFunctions import *
-from Mapping_tool import *
-from Synchronizer import *
+from UserDataBaseFunctions import conn_db, mysession, get_post
+from Mapping_tool import make_plot
+
 
 # App Flask object creation
 app = Flask(__name__,template_folder='templates')
